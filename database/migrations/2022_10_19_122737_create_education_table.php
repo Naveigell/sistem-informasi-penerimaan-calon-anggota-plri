@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('biodata_id')->constrained('biodatas')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('candidate_id')->constrained('candidates')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('primary_school_name');
             $table->string('primary_school_graduated_year');
             $table->string('primary_school_city');

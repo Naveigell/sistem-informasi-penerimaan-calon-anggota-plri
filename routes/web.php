@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('candidates')->name('candidates.')->group(function () {
+    Route::prefix('registrations/{type}')->name('registrations.')->group(function ($type) {
+        Route::resource('/', \App\Http\Controllers\Candidates\RegistrationController::class)->only('index', 'create', 'store');
+    });
 });
+
+Route::view('/', 'candidate.pages.auth.login');

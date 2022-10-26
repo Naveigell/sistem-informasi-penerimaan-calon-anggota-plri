@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Biodata;
+use App\Models\Candidate;
 use App\Models\CandidateParent;
 use App\Models\Education;
 use App\Models\Polda;
-use App\Models\User;
-use Faker\Factory;
 use Faker\Generator;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -27,18 +27,12 @@ class UserSeeder extends Seeder
 
         for ($i = 0; $i < 30; $i++) {
             \DB::transaction(function () use ($faker, $poldas) {
-                $user = User::create([
-                    "name" => $faker->name,
-                    "email" => $faker->unique()->email,
-                    "password" => 123456,
-                ]);
-
-                $biodata = Biodata::create([
+                $candidate = Candidate::create([
                     "name"                        => $faker->name,
-                    "user_id"                     => $user->id,
                     "polda_id"                    => $poldas->random()->id,
                     "height"                      => rand(170, 190),
                     "weight"                      => rand(50, 90),
+                    "avatar"                      => UploadedFile::fake()->image(Str::random(45) . '.jpg'),
                     "gender"                      => Arr::random(['male', 'female']),
                     "birth_place"                 => $faker->country,
                     "religion"                    => Arr::random(['hindu', 'protestan', 'islam', 'buddha', 'katolik', 'konghucu']),
@@ -52,7 +46,7 @@ class UserSeeder extends Seeder
                 ]);
 
                 Education::create([
-                    "biodata_id"                        => $biodata->id,
+                    "candidate_id"                      => $candidate->id,
                     "primary_school_name"               => $faker->company,
                     "primary_school_graduated_year"     => $faker->year,
                     "primary_school_city"               => $faker->city,
@@ -74,23 +68,23 @@ class UserSeeder extends Seeder
                 $hasMother   = rand(1, 10) <= 5;
                 $hasGuidance = rand(1, 10) <= 5;
 
-                $this->createCandidateParent($faker, $biodata, CandidateParent::TYPE_FATHER, $faker->firstNameMale);
+                $this->createCandidateParent($faker, $candidate, CandidateParent::TYPE_FATHER, $faker->firstNameMale);
 
                 if ($hasMother) {
-                    $this->createCandidateParent($faker, $biodata, CandidateParent::TYPE_MOTHER, $faker->firstNameFemale);
+                    $this->createCandidateParent($faker, $candidate, CandidateParent::TYPE_MOTHER, $faker->firstNameFemale);
                 }
 
                 if ($hasGuidance) {
-                    $this->createCandidateParent($faker, $biodata, CandidateParent::TYPE_GUIDANCE, $faker->name);
+                    $this->createCandidateParent($faker, $candidate, CandidateParent::TYPE_GUIDANCE, $faker->name);
                 }
             });
         }
     }
 
-    private function createCandidateParent(Generator $faker, Biodata $biodata, $type, $parentName)
+    private function createCandidateParent(Generator $faker, Candidate $biodata, $type, $parentName)
     {
         CandidateParent::create([
-            "biodata_id"     => $biodata->id,
+            "candidate_id"   => $biodata->id,
             "name"           => $parentName,
             "parent_type"    => $type,
             "religion"       => Arr::random(['hindu', 'protestan', 'islam', 'buddha', 'katolik', 'konghucu']),

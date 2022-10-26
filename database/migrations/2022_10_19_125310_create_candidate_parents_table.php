@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('candidate_parents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('biodata_id')->constrained('biodatas')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('name');
-            $table->string('parent_type')->comment('father, mother or guidance');
-            $table->string('religion');
-            $table->unsignedInteger('age');
-            $table->string('phone');
-            $table->string('address');
+            $table->foreignId('candidate_id')->constrained('candidates')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('name')->nullable();
+            $table->string('parent_type')->comment('father, mother or guidance')->nullable();
+            $table->string('religion')->nullable();
+            $table->unsignedInteger('age')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->string('landline_phone')->comment('telepon rumah')->nullable();
             $table->string('work_group')->nullable();
             $table->string('type_of_work')->nullable();

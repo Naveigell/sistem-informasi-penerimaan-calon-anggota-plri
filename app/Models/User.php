@@ -46,9 +46,4 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = \Hash::make($value);
     }
-
-    public function biodata()
-    {
-        return $this->hasOne(Biodata::class);
-    }
 }
