@@ -15,4 +15,9 @@ class Education extends Model
         'senior_high_school_name', 'senior_high_school_graduated_year', 'senior_high_school_city', 'senior_high_school_province',
         'senior_high_school_department', 'senior_high_school_certificate', 'senior_high_school_exam_score', 'senior_high_school_report'
     ];
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }

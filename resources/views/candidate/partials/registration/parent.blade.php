@@ -37,7 +37,7 @@
     <div class="col-5">
         <div class="form-group">
             <label>* No Hp</label>
-            <input type="text" name="{{ $type }}[phone]" value="{{ old("{$type}.phone") }}" class="form-control @error("{$type}.phone") is-invalid @enderror">
+            <input type="tel" name="{{ $type }}[phone]" value="{{ old("{$type}.phone") }}" class="form-control @error("{$type}.phone") is-invalid @enderror">
             @error("{$type}.phone")
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -46,7 +46,7 @@
     <div class="col-5">
         <div class="form-group">
             <label>Telp Rumah</label>
-            <input type="text" name="{{ $type }}[landline_phone]" value="{{ old("{$type}.landline_phone") }}" class="form-control @error("{$type}.landline_phone") is-invalid @enderror">
+            <input type="tel" name="{{ $type }}[landline_phone]" value="{{ old("{$type}.landline_phone") }}" class="form-control @error("{$type}.landline_phone") is-invalid @enderror">
             @error("{$type}.landline_phone")
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

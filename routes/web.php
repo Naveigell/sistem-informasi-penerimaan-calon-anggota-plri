@@ -19,4 +19,4 @@ Route::prefix('candidates')->name('candidates.')->group(function () {
     });
 });
 
-Route::view('/', 'candidate.pages.auth.login');
+Route::view('/', 'candidate.pages.auth.login')->name('home');

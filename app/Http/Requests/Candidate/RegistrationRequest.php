@@ -36,10 +36,10 @@ class RegistrationRequest extends FormRequest
             "identity_card_creation_date" => "required|date",
 
             // EDUCATION VALIDATION RULE
-            "primary_school_name"           => "required|string|min:1|max:255",
-            "primary_school_graduated_year" => "required|integer|min_digits:4|max_digits:4",
-            "primary_school_city"           => "required|string|min:1|max:255",
-            "primary_school_province"       => "required|string|min:1|max:255",
+            "primary_school_name"               => "required|string|min:1|max:255",
+            "primary_school_graduated_year"     => "required|integer|min_digits:4|max_digits:4",
+            "primary_school_city"               => "required|string|min:1|max:255",
+            "primary_school_province"           => "required|string|min:1|max:255",
 
             "junior_high_school_name"           => "required|string|min:1|max:255",
             "junior_high_school_graduated_year" => "required|integer|min_digits:4|max_digits:4",
@@ -51,9 +51,10 @@ class RegistrationRequest extends FormRequest
             "senior_high_school_city"           => "required|string|min:1|max:255",
             "senior_high_school_province"       => "required|string|min:1|max:255",
 
-            "senior_high_school_department" => "required|string|in:" . join(',', array_keys(config('static.senior_high_school_certificate'))),
-            "senior_high_school_exam_score" => "required|integer|min:1|max:1000",
-            "senior_high_school_report"     => "required|integer|min:1|max:1000",
+            "senior_high_school_certificate"    => "required|string|in:" . join(',', array_keys(config('static.senior_high_school_certificate'))),
+            "senior_high_school_exam_score"     => "required|integer|min:1|max:1000",
+            "senior_high_school_report"         => "required|integer|min:1|max:1000",
+            "senior_high_school_department"     => "required|string|min:3|max:255",
 
             // PARENT VALIDATION RULE
             ...$this->constructRuleForParent('father'),

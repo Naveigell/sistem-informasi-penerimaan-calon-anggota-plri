@@ -166,9 +166,9 @@
     <div class="col-5">
         <div class="form-group">
             <label>Raport</label>
-            <input type="number" name="senior_high_school_exam_score" class="form-control @error("senior_high_school_exam_score") is-invalid @enderror" min="1">
-            @if($errors->has('senior_high_school_exam_score'))
-                <div class="invalid-feedback">{{ $errors->first('senior_high_school_exam_score') }}</div>
+            <input type="number" value="{{ old('senior_high_school_report') }}" name="senior_high_school_report" class="form-control @error("senior_high_school_report") is-invalid @enderror" min="1">
+            @if($errors->has('senior_high_school_report'))
+                <div class="invalid-feedback">{{ $errors->first('senior_high_school_report') }}</div>
             @else
                 <small class="text text-muted">* Rata rata nilai raport kelas 3 semester 1</small>
             @endif

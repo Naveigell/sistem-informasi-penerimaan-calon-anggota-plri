@@ -37,4 +37,9 @@ class Candidate extends Model
             $this->attributes['avatar'] = $name;
         }
     }
+
+    public function candidateParents()
+    {
+        return $this->hasMany(CandidateParent::class);
+    }
 }

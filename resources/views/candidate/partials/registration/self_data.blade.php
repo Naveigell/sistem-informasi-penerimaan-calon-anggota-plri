@@ -78,6 +78,17 @@
     </div>
 </div>
 <div class="form-group">
+    <label>Jenis Kelamin</label>
+    <select name="gender" id="" class="form-control @error("gender") is-invalid @enderror">
+        <x-forms.option-placeholder></x-forms.option-placeholder>
+        <option @if (old('gender') == 'male') selected @endif value="male">Laki - laki</option>
+        <option @if (old('gender') == 'female') selected @endif value="female">Perempuan</option>
+    </select>
+    @error("gender")
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
     <label>Alamat</label>
     <textarea name="address" id="" cols="30" rows="40" class="form-control @error("address") is-invalid @enderror" style="resize: none; min-height: 150px;">{{ old('address') }}</textarea>
     @if($errors->has('address'))
@@ -99,7 +110,7 @@
     <div class="col-5">
         <div class="form-group">
             <label>Telepon</label>
-            <input type="text" value="{{ old('phone') }}" name="phone" class="form-control @error("phone") is-invalid @enderror">
+            <input type="tel" value="{{ old('phone') }}" name="phone" class="form-control @error("phone") is-invalid @enderror">
             @error("phone")
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

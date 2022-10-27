@@ -2,6 +2,13 @@
 
 @section('content')
     <div class="container mt-5">
+        @if ($message = session('success'))
+            <div class="row">
+                <div class="col-12">
+                    <x-notifications.alert :message="$message"></x-notifications.alert>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-8">
                 <div class="row">

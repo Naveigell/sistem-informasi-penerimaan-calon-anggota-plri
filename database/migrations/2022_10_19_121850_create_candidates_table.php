@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('height');
             $table->unsignedInteger('weight');
             $table->string('avatar');
-            $table->string('gender');
+            $table->string('gender')->comment('male or female');
             $table->string('birth_place');
             $table->string('religion');
             $table->string('address');
