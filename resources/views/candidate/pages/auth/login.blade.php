@@ -2,10 +2,19 @@
 
 @section('content')
     <div class="container mt-5">
-        @if ($message = session('success'))
+        @if ($success = session('success'))
             <div class="row">
                 <div class="col-12">
-                    <x-notifications.alert :message="$message"></x-notifications.alert>
+                    <x-notifications.alert :message="$success"></x-notifications.alert>
+                </div>
+            </div>
+        @endif
+        @if ($download = session('candidate-pdf-url'))
+            <div class="row">
+                <div class="col-12">
+                    <x-notifications.alert :dissmisable="false" type="alert-light">
+                        Silakan mendownload registrasi melalui link berikut .. <a href="{{ $download }}" target="_blank" class="text text-primary">download</a>
+                    </x-notifications.alert>
                 </div>
             </div>
         @endif

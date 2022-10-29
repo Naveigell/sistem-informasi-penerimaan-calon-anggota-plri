@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('polda_id')->constrained('poldas')->cascadeOnUpdate()->cascadeOnUpdate();
+            $table->foreignId('polres_id')->constrained('polres')->cascadeOnUpdate()->cascadeOnUpdate();
+            $table->string('registration_number');
+            $table->string('password');
+            $table->string('type')->comment('akpol, ssps, tamtama, bintara');
+            $table->string('email');
             $table->string('name');
             $table->unsignedInteger('height');
             $table->unsignedInteger('weight');

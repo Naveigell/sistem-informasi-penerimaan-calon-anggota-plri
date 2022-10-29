@@ -16,12 +16,28 @@ class PoldaSeeder extends Seeder
     public function run()
     {
         $poldas = [
-            'Polda Bali', 'Polda Jatim', 'Polda Jabar', 'Polda Metro',
+            [
+                "name" => "Polda Bali",
+                "number" => 22,
+            ],
+            [
+                "name" => "Polda Jatim",
+                "number" => 23,
+            ],
+            [
+                "name" => "Polda Jabar",
+                "number" => 24,
+            ],
+            [
+                "name" => "Polda Metro",
+                "number" => 25,
+            ],
         ];
 
         foreach ($poldas as $polda) {
             Polda::create([
-                "name" => $polda,
+                "name" => $polda['name'],
+                "number" => $polda['number'],
             ]);
         }
     }

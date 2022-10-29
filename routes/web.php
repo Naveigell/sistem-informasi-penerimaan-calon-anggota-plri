@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Candidates\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('candidates')->name('candidates.')->group(function () {
-    Route::prefix('registrations/{type}')->name('registrations.')->group(function ($type) {
-        Route::resource('/', \App\Http\Controllers\Candidates\RegistrationController::class)->only('index', 'create', 'store');
+    Route::prefix('registrations/{type}')->name('registrations.')->group(function () {
+        Route::resource('/', RegistrationController::class)->only('index', 'create', 'store');
     });
 });
 
 Route::view('/', 'candidate.pages.auth.login')->name('home');
+Route::get('/candidate/{candidate}/pdf', [RegistrationController::class, 'downloadPdf'])->middleware('signed')->name('candidate.pdf.download');

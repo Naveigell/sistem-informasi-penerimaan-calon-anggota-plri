@@ -26,6 +26,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Asal Polres</label>
+                                <select name="polres_id" id="" class="form-control">
+                                    <x-forms.option-placeholder placeholder="-- Pilih Polres --"></x-forms.option-placeholder>
+                                    @foreach($poldas->where('number', 22)->first()->polres as $polres)
+                                        <option @if ($polres->id == old("polres_id")) selected @endif value="{{ $polres->id }}">{{ $polres->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="card">

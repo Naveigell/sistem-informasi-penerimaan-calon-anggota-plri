@@ -9,5 +9,10 @@ class Polda extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'number'];
+
+    public function polres()
+    {
+        return $this->hasMany(Polres::class);
+    }
 }

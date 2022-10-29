@@ -2,12 +2,24 @@
 
 namespace App\Http\Requests\Candidate;
 
+use App\Models\Candidate;
 use App\Models\Polda;
+use App\Models\Polres;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return in_array($this->route('type'), [
+            Candidate::REGISTRATION_TAMTAMA,
+            Candidate::REGISTRATION_BINTARA,
+            Candidate::REGISTRATION_SIPSS,
+            Candidate::REGISTRATION_AKPOL,
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -15,11 +27,14 @@ class RegistrationRequest extends FormRequest
      */
     public function rules()
     {
-        $poldaIds = Polda::pluck('id')->join(',');
+        $poldaIds  = Polda::pluck('id')->join(',');
+        $polresIds = Polres::pluck('id')->join(',');
 
         return [
             // CANDIDATE VALIDATION RULE
             "polda_id"                    => "required|string|in:" . $poldaIds,
+            "polres_id"                   => "required|string|in:" . $polresIds,
+            "email"                       => "required|string|min:6|max:255",
             "name"                        => "required|string|max:255",
             "height"                      => "required|integer|min:1|max:300", // in cm
             "weight"                      => "required|integer|min:1|max:300", // in kg

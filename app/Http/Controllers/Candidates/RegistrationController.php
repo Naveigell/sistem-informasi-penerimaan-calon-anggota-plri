@@ -25,7 +25,7 @@ class RegistrationController extends Controller
             !in_array($request->route('type'), [Candidate::REGISTRATION_AKPOL, Candidate::REGISTRATION_SIPSS, Candidate::REGISTRATION_BINTARA, Candidate::REGISTRATION_TAMTAMA]), 404
         );
 
-        $poldas = Polda::all();
+        $poldas = Polda::with('polres')->get();
 
         return view('candidate.pages.registration.form', compact('poldas'));
     }
@@ -39,7 +39,9 @@ class RegistrationController extends Controller
     public function store(RegistrationRequest $request)
     {
         DB::transaction(function () use ($request) {
-            $candidate = Candidate::create($request->validated());
+            $candidate = Candidate::create(array_merge($request->validated(), [
+                "type" => $request->route('type'),
+            ]));
 
             $education = new Education($request->validated());
             $education->candidate()->associate($candidate)->save();
@@ -57,6 +59,11 @@ class RegistrationController extends Controller
         });
 
         return redirect(route('home'))->with('success', 'Terimakasih, pendaftaran berhasil dilakukan');
+    }
+
+    public function downloadPdf(Candidate $candidate)
+    {
+        return $candidate->downloadPdf();
     }
 
     private function allBasicFieldIsFilled(RegistrationRequest $request)
