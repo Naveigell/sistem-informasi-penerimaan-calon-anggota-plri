@@ -83,23 +83,30 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                        @dump(auth()->user())
+                        @dump(auth('candidate')->user())
+                        <form method="post" action="{{ route('candidates.auth.login') }}">
+                            @csrf
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                                <div class="invalid-feedback">
-                                    Please fill in your email
-                                </div>
+                                <label for="registration_number">Nomor Registrasi</label>
+                                <input id="registration_number" type="text" class="form-control @error('registration_number') is-invalid @enderror" name="registration_number" tabindex="1" value="{{ old('registration_number') }}">
+                                @error('registration_number')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <div class="d-block">
                                     <label for="password" class="control-label">Password</label>
                                 </div>
-                                <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                                <div class="invalid-feedback">
-                                    please fill in your password
-                                </div>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2">
+                                @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
