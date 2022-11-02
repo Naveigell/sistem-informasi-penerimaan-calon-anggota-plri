@@ -25,6 +25,11 @@ class Candidate extends Authenticatable {
     const REGISTRATION_BINTARA = 'bintara';
     const REGISTRATION_TAMTAMA = 'tamtama';
 
+    const GENDERS = [
+        "male"   => "Laki - laki",
+        "female" => "Perempuan",
+    ];
+
     protected $casts = [
         "birth_date" => "datetime",
     ];
@@ -98,5 +103,30 @@ class Candidate extends Authenticatable {
     public function candidateParents()
     {
         return $this->hasMany(CandidateParent::class);
+    }
+
+    public function education()
+    {
+        return $this->hasOne(Education::class);
+    }
+
+    public function polres()
+    {
+        return $this->belongsTo(Polres::class);
+    }
+
+    public function polda()
+    {
+        return $this->belongsTo(Polda::class);
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return asset("storage/images/candidates/{$this->avatar}");
+    }
+
+    public function getGenderFormattedAttribute()
+    {
+        return self::GENDERS[$this->gender];
     }
 }

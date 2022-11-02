@@ -11,7 +11,6 @@
                 </div>
                 <form action="{{ route('candidates.registrations.store', request()->route('type')) }}" class="" method="post" enctype="multipart/form-data">
                     @csrf
-                    @dump($errors->toArray())
                     <div class="card">
                         <div class="card-header">
                             <h4>Asal Polda dan Pol Res/Ta/Bes</h4>

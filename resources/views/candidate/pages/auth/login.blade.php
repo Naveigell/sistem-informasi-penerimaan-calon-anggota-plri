@@ -83,8 +83,6 @@
                     </div>
 
                     <div class="card-body">
-                        @dump(auth()->user())
-                        @dump(auth('candidate')->user())
                         <form method="post" action="{{ route('candidates.auth.login') }}">
                             @csrf
                             <div class="form-group">
