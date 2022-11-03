@@ -35,7 +35,6 @@
                                 <td>{{ $candidate->phone }}</td>
                                 <td>
                                     <a href="{{ route('admins.candidates.show', $candidate) }}" class="btn btn-warning btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-eye"></i></a>
-                                    <!-- Use this action to remove Jurusan -->
                                     <span data-action="{{ route('admins.candidates.destroy', $candidate) }}" class="delete-confirm-btn display-xs-inline-block" data-toggle="tooltip" title="Hapus">
                                         <button type="button" class="btn btn-danger" data-toggle="modal">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
