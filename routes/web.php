@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController as AuthAdminController;
 use App\Http\Controllers\Admin\CandidateController;
+use App\Http\Controllers\Admin\Master\FileController as MasterFileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
 use App\Http\Controllers\Candidates\RegistrationController;
@@ -36,6 +37,9 @@ Route::prefix('admin/auth')->name('admins.auth.')->group(function () {
 Route::prefix('admin')->name('admins.')->group(function () {
     Route::resource('candidates', CandidateController::class)->only('index', 'show', 'destroy');
     Route::resource('schedules', ScheduleController::class)->except('show');
+    Route::prefix('master')->name('master.')->group(function () {
+        Route::resource('files', MasterFileController::class)->except('show');
+    });
 });
 
 Route::view('/admin/login', 'admin.pages.auth.login')->name('admin.login.index');
