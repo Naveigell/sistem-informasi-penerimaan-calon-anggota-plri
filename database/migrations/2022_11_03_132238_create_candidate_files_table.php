@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('candidate_file', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidate_id')->constrained('candidates')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('file_id')->constrained('files')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('filename');
-            $table->string('status')->comment('accepted, declined');
-            $table->string('description');
+            $table->string('status')->nullable()->comment('accepted, declined');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

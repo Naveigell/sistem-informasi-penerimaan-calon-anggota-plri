@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Admin\Master\FileController as MasterFileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
+use App\Http\Controllers\Candidates\FileController as CandidateFileController;
 use App\Http\Controllers\Candidates\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('candidates')->name('candidates.')->middleware('should.authenticated:false')->group(function () {
-    Route::prefix('registrations/{type}')->name('registrations.')->group(function () {
+Route::prefix('candidates')->name('candidates.')->group(function () {
+    Route::prefix('registrations/{type}')->middleware('should.authenticated:false')->name('registrations.')->group(function () {
         Route::resource('/', RegistrationController::class)->only('index', 'create', 'store');
     });
+
+    Route::resource('files', CandidateFileController::class)->only('index', 'update');
 });
 
 Route::prefix('candidates/auth')->name('candidates.auth.')->group(function () {

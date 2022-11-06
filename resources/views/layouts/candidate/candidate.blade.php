@@ -20,9 +20,18 @@
                     <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <ul class="navbar-nav">
-                    <li class="nav-item active"><a href="#" class="nav-link">Application</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li>
+                    @if(auth('candidate')->check())
+                        <li class="nav-item active"><a href="#" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Biodata</a></li>
+                        <li class="nav-item"><a href="{{ route('candidates.files.index') }}" class="nav-link">Berkas</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Nilai</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                    @else
+                        <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+                        <li class="nav-item active"><a href="#" class="nav-link">Jadwal Seleksi</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Tata Cara Pendaftaran</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Petunjuk Pakaian</a></li>
+                    @endif
                 </ul>
             </div>
         </nav>

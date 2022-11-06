@@ -12,4 +12,9 @@ class File extends Model
     protected $fillable = [
         'name', 'max_size', 'description',
     ];
+
+    public function candidateFile()
+    {
+        return $this->hasMany(CandidateFile::class);
+    }
 }
