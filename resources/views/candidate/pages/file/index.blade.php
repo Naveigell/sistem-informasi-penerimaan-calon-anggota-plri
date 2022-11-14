@@ -42,7 +42,7 @@
                                         </div>
                                     </td>
                                     <td class="col-7">
-                                        @if ($file->candidateFile->isEmpty())
+                                        @if ($file->candidateFile->isEmpty() || ($file->candidateFile->isNotEmpty() && $file->candidateFile->first()->status == \App\Models\CandidateFile::STATUS_DECLINED))
                                             <form action="{{ route('candidates.files.update', $file) }}" class="" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
@@ -66,7 +66,7 @@
                                     </td>
                                     <td class="col-2">
                                         @if ($file->candidateFile->isEmpty())
-                                            <span class="d-block text text-warning text-small">Menunggu</span>
+                                            <span class="d-block text text-light text-small">Menunggu Upload</span>
                                             <span class="d-block text-small">
                                                 Keterangan : <br>
                                                 menunggu berkas untuk di upload
@@ -85,7 +85,7 @@
                                                     telah di verifikasi oleh OPERATOR POLRESTA DENPASAR
                                                 </span>
                                             @else
-                                                <span class="d-block text text-success text-small">Ditolak</span>
+                                                <span class="d-block text text-danger text-small">Ditolak</span>
                                                 <span class="d-block text-small">
                                                     Keterangan : <br>
                                                     berkas ditolak oleh OPERATOR POLRESTA DENPASAR, silakan menguplaod ulang

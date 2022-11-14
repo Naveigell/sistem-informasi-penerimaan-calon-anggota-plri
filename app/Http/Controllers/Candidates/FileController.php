@@ -32,9 +32,11 @@ class FileController extends Controller
      */
     public function update(FileRequest $request, File $file)
     {
-        $file->candidateFile()->create([
-            "filename"     => $request->file("file_{$file->id}"),
+        $file->candidateFile()->updateOrCreate([
             "candidate_id" => auth('candidate')->id(),
+        ], [
+            "filename"     => $request->file("file_{$file->id}"),
+            "status"       => null,
         ]);
 
         return redirect(route('candidates.files.index'))->with('success', 'Berhasil mengunggah berkas');

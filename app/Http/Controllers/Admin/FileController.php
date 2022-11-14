@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FileRequest;
 use App\Models\Candidate;
+use App\Models\CandidateFile;
 use App\Models\File;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class FileController extends Controller
 {
@@ -69,13 +74,22 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param FileRequest $request
+     * @param Candidate $candidate
+     * @param File $file
+     * @return Application|RedirectResponse|Redirector
      */
-    public function update(Request $request, $id)
+    public function update(FileRequest $request, Candidate $candidate, File $file)
     {
-        //
+        CandidateFile::updateOrCreate([
+            "candidate_id" => $candidate->id,
+            "file_id" => $file->id,
+        ], [
+            "status" => $request->route('status'),
+            "description" => $request->description,
+        ]);
+
+        return redirect(route('admins.candidates.files.index', $candidate))->with('success', 'Berhasil mengubah status');
     }
 
     /**

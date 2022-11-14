@@ -13,8 +13,8 @@ class CandidateFile extends Model
 
     protected $table = 'candidate_file';
 
-    public const STATUS_ACCEPTED = 'diterima';
-    public const STATUS_DECLINED = 'ditolak';
+    public const STATUS_ACCEPTED = 'accepted';
+    public const STATUS_DECLINED = 'declined';
 
     protected $fillable = [
         'candidate_id', 'filename', 'status', 'description',

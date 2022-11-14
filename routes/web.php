@@ -40,7 +40,8 @@ Route::prefix('admin/auth')->name('admins.auth.')->group(function () {
 
 Route::prefix('admin')->name('admins.')->group(function () {
     Route::resource('candidates', CandidateController::class)->only('index', 'show', 'destroy');
-    Route::resource('candidates.files', AdminFileController::class)->only('index', 'update');
+    Route::resource('candidates.files', AdminFileController::class)->only('index');
+    Route::put('candidates/{candidate}/files/{file}/status/{status}', [AdminFileController::class, 'update'])->whereIn('status', ['accepted', 'declined'])->name('candidates.files.status.update');
     Route::resource('schedules', ScheduleController::class)->except('show');
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('files', MasterFileController::class)->except('show');

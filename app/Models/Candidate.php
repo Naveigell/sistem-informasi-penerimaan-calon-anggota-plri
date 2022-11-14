@@ -73,7 +73,12 @@ class Candidate extends Authenticatable {
 
         $registrationNumber = $polda->number .  '' . config('static.candidate_type.' . $this->type) . $polres->number . str_pad((string) $increment, 5, '0', STR_PAD_LEFT);
 
-        $this->password            = Hash::make(date('dmY', strtotime($this->birth_date)));
+        if (config('app.env') == 'staging') {
+            $this->password = Hash::make(date('dmY', strtotime($this->birth_date)));
+        } else {
+            $this->password = Hash::make(123456);
+        }
+
         $this->registration_number = $registrationNumber;
     }
 
