@@ -120,6 +120,11 @@ class Candidate extends Authenticatable {
         return $this->belongsTo(Polda::class);
     }
 
+    public function candidateFiles()
+    {
+        return $this->hasMany(CandidateFile::class, 'candidate_id');
+    }
+
     public function getAvatarUrlAttribute()
     {
         return asset("storage/images/candidates/{$this->avatar}");

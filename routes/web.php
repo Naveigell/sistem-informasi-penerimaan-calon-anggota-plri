@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController as AuthAdminController;
 use App\Http\Controllers\Admin\CandidateController;
+use App\Http\Controllers\Admin\FileController as AdminFileController;
 use App\Http\Controllers\Admin\Master\FileController as MasterFileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
@@ -39,6 +40,7 @@ Route::prefix('admin/auth')->name('admins.auth.')->group(function () {
 
 Route::prefix('admin')->name('admins.')->group(function () {
     Route::resource('candidates', CandidateController::class)->only('index', 'show', 'destroy');
+    Route::resource('candidates.files', AdminFileController::class)->only('index', 'update');
     Route::resource('schedules', ScheduleController::class)->except('show');
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('files', MasterFileController::class)->except('show');

@@ -41,4 +41,9 @@ class CandidateFile extends Model
     {
         return asset("storage/images/candidates/{$this->filename}");
     }
+
+    public function file()
+    {
+        return $this->belongsTo(File::class);
+    }
 }

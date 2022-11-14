@@ -34,6 +34,7 @@
                                 <td>{{ $candidate->city }}</td>
                                 <td>{{ $candidate->phone }}</td>
                                 <td>
+                                    <a href="{{ route('admins.candidates.files.index', $candidate) }}" class="btn btn-light mr-1" data-toggle="tooltip" title="" data-original-title="Berkas"><i class="fas fa-book"></i></a>
                                     <a href="{{ route('admins.candidates.show', $candidate) }}" class="btn btn-warning btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-eye"></i></a>
                                     <span data-action="{{ route('admins.candidates.destroy', $candidate) }}" class="delete-confirm-btn display-xs-inline-block" data-toggle="tooltip" title="Hapus">
                                         <button type="button" class="btn btn-danger" data-toggle="modal">
