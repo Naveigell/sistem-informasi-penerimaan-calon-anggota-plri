@@ -17,4 +17,9 @@ class Schedule extends Model
         "date_start" => "datetime",
         "date_end"   => "datetime",
     ];
+
+    public function selectionResults()
+    {
+        return $this->hasMany(SelectionResult::class);
+    }
 }

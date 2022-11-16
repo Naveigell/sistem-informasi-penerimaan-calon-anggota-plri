@@ -130,6 +130,11 @@ class Candidate extends Authenticatable {
         return $this->hasMany(CandidateFile::class, 'candidate_id');
     }
 
+    public function selectionResults()
+    {
+        return $this->hasMany(SelectionResult::class);
+    }
+
     public function getAvatarUrlAttribute()
     {
         return asset("storage/images/candidates/{$this->avatar}");
