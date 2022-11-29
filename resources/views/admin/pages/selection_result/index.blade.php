@@ -34,7 +34,7 @@
                                     <td>{{ $schedule->name }}</td>
                                     <td>{{ $schedule->date_start->format('d F Y') }} s/d {{ $schedule->date_end->format('d F Y') }}</td>
                                     <td>
-                                        <input name="results[{{ $loop->index }}][value]" type="text" class="form-control @error ('results.' . $loop->index . '.value') is-invalid @enderror" value="{{ optional($schedule->selectionResults->first())->value ?? 0 }}">
+                                        <input name="results[{{ $loop->index }}][value]" type="text" disabled class="form-control @error ('results.' . $loop->index . '.value') is-invalid @enderror" value="{{ optional($schedule->selectionResult)->value ?? 0 }}">
                                         @error("results.$loop->index.value")
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -45,9 +45,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

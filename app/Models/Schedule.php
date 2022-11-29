@@ -22,4 +22,9 @@ class Schedule extends Model
     {
         return $this->hasMany(SelectionResult::class);
     }
+
+    public function selectionResult()
+    {
+        return $this->hasOne(SelectionResult::class);
+    }
 }

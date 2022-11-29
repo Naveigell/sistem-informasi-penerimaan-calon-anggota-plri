@@ -9,7 +9,7 @@ class SelectionResult extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['schedule_id', 'candidate_id', 'value'];
+    protected $fillable = ['schedule_id', 'candidate_id', 'filename', 'value'];
 
     public function schedule()
     {

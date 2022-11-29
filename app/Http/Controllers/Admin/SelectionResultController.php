@@ -23,7 +23,7 @@ class SelectionResultController extends Controller
      */
     public function index(Candidate $candidate)
     {
-        $schedules = Schedule::with(['selectionResults' => function ($query) use($candidate) {
+        $schedules = Schedule::with(['selectionResult' => function ($query) use($candidate) {
             $query->where('candidate_id', $candidate->id);
         }])->get();
 

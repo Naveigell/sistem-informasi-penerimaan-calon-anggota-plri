@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <span class="d-block text text-danger mb-4">
-                        *Jika pada file berkas terdapat keteragan file corupt silahkan refresh halaman anda!
+                        *Jika pada file berkas terdapat keterangan file corupt silahkan refresh halaman anda!
                     </span>
                     @if ($success = session('success'))
                         <div class="row">
@@ -38,7 +38,7 @@
                                             @if ($file->description)
                                                 <span class="d-block text text-danger text-small mt-2 font-weight-bold">{{ $file->description }}</span>
                                             @endif
-                                            <span class="d-block text text-danger text-small mt-2 mb-4">* Maksimal ukuran file {{ $file->max_size }}</span>
+                                            <span class="d-block text text-danger text-small mt-2 mb-4">* Maksimal ukuran file {{ $file->max_size }} MB</span>
                                         </div>
                                     </td>
                                     <td class="col-7">

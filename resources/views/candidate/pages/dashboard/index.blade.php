@@ -5,7 +5,7 @@
         <div class="col-5 bg-primary text-white text p-5 rounded">
             <h3>{{ auth('candidate')->user()->name }}</h3>
             <div class="mt-3">
-                3279928302309482431
+                {{ auth('candidate')->user()->identity_card }}
             </div>
             <div class="mt-3">
                 <span class="d-block font-weight-bold">Jalur Seleksi</span>
