@@ -29,7 +29,7 @@ class CandidateSeeder extends Seeder
 
         for ($i = 0; $i < 30; $i++) {
             \DB::transaction(function () use ($faker, $poldas, $polres) {
-                $candidate = Candidate::create([
+                $candidate = new Candidate([
                     "name"                        => $faker->name,
                     "type"                        => Arr::random(array_keys(config('static.candidate_type'))),
                     "email"                       => $faker->unique()->email,
@@ -49,6 +49,8 @@ class CandidateSeeder extends Seeder
                     "identity_card"               => $faker->numerify('################'),
                     "identity_card_creation_date" => $faker->date,
                 ]);
+                $candidate->createRegistrationNumber();
+                $candidate->saveQuietly();
 
                 Education::create([
                     "candidate_id"                      => $candidate->id,

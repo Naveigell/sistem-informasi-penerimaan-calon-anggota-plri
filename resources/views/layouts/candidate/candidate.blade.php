@@ -22,7 +22,7 @@
                 <ul class="navbar-nav">
                     @if(auth('candidate')->check())
                         <li class="nav-item active"><a href="{{ route('candidates.dashboards.index') }}" class="nav-link">Dashboard</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Biodata</a></li>
+                        <li class="nav-item"><a href="{{ route('candidates.biodatas.index') }}" class="nav-link">Biodata</a></li>
                         <li class="nav-item"><a href="{{ route('candidates.files.index') }}" class="nav-link">Berkas</a></li>
                         <li class="nav-item"><a href="{{ route('candidates.selection-results.index') }}" class="nav-link">Nilai</a></li>
                         <li class="nav-item"><a href="{{ route('candidates.auth.logout') }}" class="nav-link">Logout</a></li>

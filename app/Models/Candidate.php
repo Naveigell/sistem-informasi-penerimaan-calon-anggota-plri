@@ -32,6 +32,7 @@ class Candidate extends Authenticatable {
 
     protected $casts = [
         "birth_date" => "datetime",
+        "identity_card_creation_date" => "datetime",
     ];
 
     /**
@@ -64,7 +65,7 @@ class Candidate extends Authenticatable {
         });
     }
 
-    private function createRegistrationNumber()
+    public function createRegistrationNumber()
     {
         $polda      = Polda::find($this->polda_id);
         $polres     = Polres::find($this->polres_id);

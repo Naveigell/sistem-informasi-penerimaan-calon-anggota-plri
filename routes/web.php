@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Master\FileController as MasterFileController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SelectionResultController as AdminSelectionResultController;
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
+use App\Http\Controllers\Candidates\BiodataController;
 use App\Http\Controllers\Candidates\FileController as CandidateFileController;
 use App\Http\Controllers\Candidates\RegistrationController;
 use App\Http\Controllers\Candidates\SelectionResultController as CandidateSelectionResultController;
@@ -29,6 +30,7 @@ Route::prefix('candidates')->name('candidates.')->group(function () {
     });
 
     Route::middleware('should.have.role:candidate')->group(function () {
+        Route::resource('biodatas', BiodataController::class)->only('index');
         Route::resource('files', CandidateFileController::class)->only('index', 'update');
         Route::view('/dashboard', 'candidate.pages.dashboard.index')->name('dashboards.index');
         Route::resource('selection-results', CandidateSelectionResultController::class)->only('index');

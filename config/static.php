@@ -18,6 +18,11 @@ return [
         "smk" => "SMK",
         "ma"  => "MA",
     ],
+    "parent_types" => [
+        "father"   => "Bapak Kandung",
+        "mother"   => "Ibu Kandung",
+        "guidance" => "Wali / Bapak Tiri / Ibu Tiri",
+    ],
     "candidate_type" => [
         \App\Models\Candidate::REGISTRATION_AKPOL   => 1,
         \App\Models\Candidate::REGISTRATION_SIPSS   => 2,
