@@ -1,0 +1,5 @@
+- can turn on/off registration from admin panel
+- change "nomor ujian" in candidate dashboard
+- change layout of pdf in candidate dashboard
+- add "tata cara pendaftaran"
+- add "petunjuk pakaian"

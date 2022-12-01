@@ -28,7 +28,16 @@
                         <li class="nav-item"><a href="{{ route('candidates.auth.logout') }}" class="nav-link">Logout</a></li>
                     @else
                         <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item active"><a href="#" class="nav-link">Jadwal Seleksi</a></li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" aria-expanded="true">
+                                <div class="d-sm-none d-lg-inline-block m-0">Jadwal Seleksi</div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @foreach($schedules as $schedule)
+                                    <a href="{{ $schedule->filename_url }}" class="dropdown-item has-icon">{{ $schedule->name }}</a>
+                                @endforeach
+                            </div>
+                        </li>
                         <li class="nav-item"><a href="#" class="nav-link">Tata Cara Pendaftaran</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Petunjuk Pakaian</a></li>
                     @endif

@@ -24,6 +24,7 @@
                             <th>No</th>
                             <th>Tahapan Seleksi</th>
                             <th>Pelaksanaan Seleksi</th>
+                            <th>Berkas</th>
                             <th>Nilai Seleksi</th>
                         </tr>
                         </thead>
@@ -33,6 +34,13 @@
                                     <th>{{ $loop->iteration }}</th>
                                     <td>{{ $schedule->name }}</td>
                                     <td>{{ $schedule->date_start->format('d F Y') }} s/d {{ $schedule->date_end->format('d F Y') }}</td>
+                                    <td>
+                                        @if ($schedule->selectionResult)
+                                            <a href="{{ $schedule->selectionResult->filename_file }}" class="">Download</a>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td>
                                         <input name="results[{{ $loop->index }}][value]" type="text" disabled class="form-control @error ('results.' . $loop->index . '.value') is-invalid @enderror" value="{{ optional($schedule->selectionResult)->value ?? 0 }}">
                                         @error("results.$loop->index.value")

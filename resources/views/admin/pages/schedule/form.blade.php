@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12">
-            <form class="card" action="{{ @$schedule ? route('admins.schedules.update', $schedule) : route('admins.schedules.store') }}" method="post">
+            <form class="card" action="{{ @$schedule ? route('admins.schedules.update', $schedule) : route('admins.schedules.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method(@$schedule ? 'PUT' : 'POST')
                 <div class="card-header">
@@ -55,6 +55,13 @@
                         <label>Lokasi</label>
                         <input type="text" value="{{ old('location', @$schedule ? $schedule->location : '') }}" name="location" class="form-control @error("location") is-invalid @enderror">
                         @error("location")
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>File (pdf)</label>
+                        <input type="file" accept="application/pdf" value="" name="filename" class="form-control @error('filename') is-invalid @enderror">
+                        @error("filename")
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

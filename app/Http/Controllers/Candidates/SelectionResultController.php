@@ -41,14 +41,14 @@ class SelectionResultController extends Controller
         $file = $request->getUploadedFile();
         $filename = $file->hashName();
 
-        $file->storeAs('app/private/selection-results', $filename);
+        $file->storeAs('public/files/xlsx/selection-results', $filename);
 
         SelectionResult::where([
             "schedule_id" => $schedule->id,
             "candidate_id" => auth('candidate')->id(),
         ])->delete();
 
-        Excel::import(new SelectionResultImport($schedule, $filename), "app/private/selection-results/{$filename}");
+        Excel::import(new SelectionResultImport($schedule, $filename), "public/files/xlsx/selection-results/{$filename}");
 
         return redirect(route('candidates.selection-results.index'))->with('success', 'Berhasil mengupload file');
     }
