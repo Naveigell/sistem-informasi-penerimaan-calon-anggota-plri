@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Registration;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,10 @@ class ShouldAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
+        $registration = Registration::where('name', $request->route('type'))->first();
+
+        abort_if(!$registration->is_active, 404);
+
         return $next($request);
     }
 }

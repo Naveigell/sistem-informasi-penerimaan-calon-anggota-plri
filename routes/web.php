@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\Admin\AuthController as AuthAdminController;
 use App\Http\Controllers\Admin\CandidateController;
+use App\Http\Controllers\Admin\ClothingInstructionController;
 use App\Http\Controllers\Admin\FileController as AdminFileController;
 use App\Http\Controllers\Admin\Master\FileController as MasterFileController;
+use App\Http\Controllers\Admin\RegistrationController as AdminRegistrationController;
+use App\Http\Controllers\Admin\RegistrationProcedureController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SelectionResultController as AdminSelectionResultController;
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
 use App\Http\Controllers\Candidates\BiodataController;
 use App\Http\Controllers\Candidates\FileController as CandidateFileController;
-use App\Http\Controllers\Candidates\RegistrationController;
+use App\Http\Controllers\Candidates\RegistrationController as CandidateRegistrationController;
 use App\Http\Controllers\Candidates\SelectionResultController as CandidateSelectionResultController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('candidates')->name('candidates.')->group(function () {
     Route::prefix('registrations/{type}')->middleware('should.authenticated:false')->name('registrations.')->group(function () {
-        Route::resource('/', RegistrationController::class)->only('index', 'create', 'store');
+        Route::resource('/', CandidateRegistrationController::class)->only('index', 'create', 'store');
     });
 
     Route::middleware('should.have.role:candidate')->group(function () {
@@ -54,6 +57,9 @@ Route::prefix('admin')->name('admins.')->group(function () {
     Route::resource('candidates.selection-results', AdminSelectionResultController::class);
     Route::put('candidates/{candidate}/files/{file}/status/{status}', [AdminFileController::class, 'update'])->whereIn('status', ['accepted', 'declined'])->name('candidates.files.status.update');
     Route::resource('schedules', ScheduleController::class)->except('show');
+    Route::resource('registrations', AdminRegistrationController::class)->only('index', 'update');
+    Route::resource('registration-procedures', RegistrationProcedureController::class)->only('index', 'update');
+    Route::resource('clothing-instructions', ClothingInstructionController::class)->only('index', 'update');
     Route::prefix('master')->name('master.')->group(function () {
         Route::resource('files', MasterFileController::class)->except('show');
     });
@@ -61,4 +67,4 @@ Route::prefix('admin')->name('admins.')->group(function () {
 
 Route::view('/admin/login', 'admin.pages.auth.login')->name('admin.login.index');
 Route::view('/', 'candidate.pages.auth.login')->name('home');
-Route::get('/candidate/{candidate}/pdf', [RegistrationController::class, 'downloadPdf'])->middleware('signed', 'should.have.role:candidate')->name('candidate.pdf.download');
+Route::get('/candidate/{candidate}/pdf', [CandidateRegistrationController::class, 'downloadPdf'])->middleware('signed', 'should.have.role:candidate')->name('candidate.pdf.download');

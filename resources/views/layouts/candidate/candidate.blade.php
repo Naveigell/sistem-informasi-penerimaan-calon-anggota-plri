@@ -38,8 +38,8 @@
                                 @endforeach
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link">Tata Cara Pendaftaran</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Petunjuk Pakaian</a></li>
+                        <li class="nav-item"><a href="{{ $procedure->filename_url }}" class="nav-link">Tata Cara Pendaftaran</a></li>
+                        <li class="nav-item"><a href="{{ $clothing->filename_url }}" class="nav-link">Petunjuk Pakaian</a></li>
                     @endif
                 </ul>
             </div>
