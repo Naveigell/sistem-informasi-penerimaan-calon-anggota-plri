@@ -59,6 +59,18 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Tingkat</label>
+                        <select name="grade" id="" class="form-control @error("grade") is-invalid @enderror">
+                            <x-forms.option-placeholder></x-forms.option-placeholder>
+                            @foreach(array_keys(\App\Models\Schedule::GRADES) as $index => $grade)
+                                <option @if ($grade == old("grade", @$schedule ? $schedule->grade : '')) selected @endif value="{{ $grade }}">{{ ucwords(\App\Models\Schedule::GRADES[$grade]) }}</option>
+                            @endforeach
+                        </select>
+                        @error("grade")
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label>File (pdf)</label>
                         <input type="file" accept="application/pdf" value="" name="filename" class="form-control @error('filename') is-invalid @enderror">
                         @error("filename")

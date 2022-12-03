@@ -22,11 +22,17 @@ class SelectionResultController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::with(['selectionResult' => function ($query) {
+        $grades = Schedule::with(['selectionResult' => function ($query) {
             $query->where('candidate_id', auth('candidate')->id());
-        }])->get();
+        }])->get()->groupBy('grade');
 
-        return view('candidate.pages.score.index', compact('schedules'));
+//        $grades = $grades->map(function ($item, $key) {
+//            return $key;
+//        });
+//
+//        dd($grades);
+
+        return view('candidate.pages.score.index', compact('grades'));
     }
 
     /**

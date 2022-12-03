@@ -31,6 +31,7 @@ class ScheduleSeeder extends Seeder
                 "date_end"   => $dateStart->addDays(rand(2, 4))->addHours(rand(20, 40))->addMinutes(rand(20 , 40))->toDateTimeString(),
                 "location"   => $faker->address,
                 "filename"   => UploadedFile::fake()->create(Str::random(40) . '.pdf', 45),
+                "grade"      => Arr::random([Schedule::GRADE_CENTRAL, Schedule::GRADE_REGION]),
             ]);
         }
     }

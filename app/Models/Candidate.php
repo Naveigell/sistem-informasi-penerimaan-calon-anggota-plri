@@ -15,7 +15,7 @@ class Candidate extends Authenticatable {
     use HasFactory;
 
     protected $fillable = [
-        'polda_id', 'polres_id', 'registration_number', 'password', 'name', 'type', 'email', 'height',
+        'polda_id', 'polres_id', 'test_number', 'registration_number', 'password', 'name', 'type', 'email', 'height',
         'weight', 'avatar', 'gender', 'birth_place', 'religion', 'address', 'birth_date', 'ethnic',
         'city', 'phone', 'identity_card', 'identity_card_creation_date',
     ];
@@ -58,11 +58,20 @@ class Candidate extends Authenticatable {
 
         self::creating(function (Candidate $candidate) {
             $candidate->createRegistrationNumber();
+            $candidate->createTestNumber();
         });
 
         self::created(function (Candidate $candidate) {
             $candidate->createPdf();
         });
+    }
+
+    public function createTestNumber()
+    {
+        $polres     = Polres::find($this->polres_id);
+        $increment  = Candidate::latest('id')->count() + 1;
+
+        $this->test_number = config('static.candidate_type.' . $this->type) . $polres->number . '/' . ($this->gender == 'male' ? 'L' : 'P') . '/' . str_pad((string) $increment, 5, '0', STR_PAD_LEFT);
     }
 
     public function createRegistrationNumber()

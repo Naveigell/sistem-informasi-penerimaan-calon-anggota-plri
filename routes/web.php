@@ -67,4 +67,4 @@ Route::prefix('admin')->name('admins.')->group(function () {
 
 Route::view('/admin/login', 'admin.pages.auth.login')->name('admin.login.index');
 Route::view('/', 'candidate.pages.auth.login')->name('home');
-Route::get('/candidate/{candidate}/pdf', [CandidateRegistrationController::class, 'downloadPdf'])->middleware('signed', 'should.have.role:candidate')->name('candidate.pdf.download');
+Route::get('/candidate/{candidate}/pdf', [CandidateRegistrationController::class, 'downloadPdf'])->middleware('signed')->name('candidate.pdf.download');

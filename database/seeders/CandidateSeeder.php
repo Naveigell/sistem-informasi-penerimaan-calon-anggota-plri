@@ -50,6 +50,7 @@ class CandidateSeeder extends Seeder
                     "identity_card_creation_date" => $faker->date,
                 ]);
                 $candidate->createRegistrationNumber();
+                $candidate->createTestNumber();
                 $candidate->saveQuietly();
 
                 Education::create([

@@ -17,7 +17,7 @@
             </div>
             <div class="mt-3">
                 <span class="d-block font-weight-bold">Nomor Ujian</span>
-                <span class="d-block">012387/P/026</span>
+                <span class="d-block">{{ auth('candidate')->user()->test_number }}</span>
             </div>
         </div>
         <div class="col-7 bg-white p-5 rounded">

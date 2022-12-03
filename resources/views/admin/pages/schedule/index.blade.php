@@ -29,6 +29,7 @@
                             <th>Waktu Mulai</th>
                             <th>Waktu Selesai</th>
                             <th>Lokasi</th>
+                            <th>Tingkat</th>
                             <th>File</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -42,6 +43,7 @@
                                 <td>{{ $schedule->date_start->format('d F Y, H:i') }}</td>
                                 <td>{{ $schedule->date_end->format('d F Y, H:i') }}</td>
                                 <td>{{ $schedule->location }}</td>
+                                <td>{{ \App\Models\Schedule::GRADES[$schedule->grade] }}</td>
                                 <td><a href="{{ $schedule->filename_url }}" class="">Download</a></td>
                                 <td>
                                     <a href="{{ route('admins.schedules.edit', $schedule) }}" class="btn btn-warning btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-eye"></i></a>

@@ -21,16 +21,18 @@
                             </div>
                         </div>
                     @endif
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Jadwal</th>
-                            <th>Berkas Nilai</th>
-                            <th>Nilai</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    @foreach($grades as $grade => $schedules)
+                        <h4 class="mb-3">Seleksi Tingkat {{ ucwords(\App\Models\Schedule::GRADES[$grade]) }}</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Jadwal</th>
+                                <th>Berkas Nilai</th>
+                                <th>Nilai</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             @foreach($schedules as $schedule)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -47,9 +49,9 @@
                                                 <div class="col-9">
                                                     <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="form-control @error('file_' . $schedule->id) is-invalid @enderror" name="file_{{ $schedule->id }}">
                                                     @error("file_{$schedule->id}")
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
                                                     @enderror
                                                 </div>
                                                 <div class="col-3">
@@ -63,8 +65,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                        @if(!$loop->last)
+                            <hr>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>

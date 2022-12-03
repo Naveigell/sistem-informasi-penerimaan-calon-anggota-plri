@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('date_end');
             $table->string('location');
             $table->string('filename');
+            $table->string('grade');
             $table->timestamps();
         });
     }

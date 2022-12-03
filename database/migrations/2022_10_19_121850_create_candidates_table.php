@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('polda_id')->constrained('poldas')->cascadeOnUpdate()->cascadeOnUpdate();
             $table->foreignId('polres_id')->constrained('polres')->cascadeOnUpdate()->cascadeOnUpdate();
+            $table->string('test_number');
             $table->string('registration_number');
             $table->string('password');
             $table->string('type')->comment('akpol, ssps, tamtama, bintara');
