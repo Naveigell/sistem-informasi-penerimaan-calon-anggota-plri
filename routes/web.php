@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SelectionResultController as AdminSelectionResult
 use App\Http\Controllers\Candidates\AuthController as AuthCandidateController;
 use App\Http\Controllers\Candidates\BiodataController;
 use App\Http\Controllers\Candidates\FileController as CandidateFileController;
+use App\Http\Controllers\Candidates\PdfController;
 use App\Http\Controllers\Candidates\RegistrationController as CandidateRegistrationController;
 use App\Http\Controllers\Candidates\SelectionResultController as CandidateSelectionResultController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,11 @@ Route::prefix('candidates')->name('candidates.')->group(function () {
         Route::resource('selection-results', CandidateSelectionResultController::class)->only('index');
         Route::patch('selection-results/{schedule}', [CandidateSelectionResultController::class, 'store'])->name('selection-result.store');
         Route::get('/selection-results/template/print', [CandidateSelectionResultController::class, 'printTemplate'])->name('selection-results.template.print');
+        Route::prefix('pdf')->name('pdf.')->group(function () {
+            Route::get('/online-registration', [PdfController::class, 'onlineRegistration'])->name('online-registration');
+            Route::get('/test-number', [PdfController::class, 'testNumber'])->name('test-number');
+            Route::get('/nametag', [PdfController::class, 'nametag'])->name('nametag');
+        });
     });
 });
 

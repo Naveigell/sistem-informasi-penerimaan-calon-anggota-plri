@@ -24,15 +24,15 @@
             <h2>Dashboard</h2>
             <h6 class="font-weight-light">Selamat Datang <span class="font-weight-bold">{{ auth('candidate')->user()->name }}</span> ({{ auth('candidate')->user()->registration_number }})</h6>
             <div class="d-flex text-center text">
-                <a href="" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
+                <a href="{{ route('candidates.pdf.online-registration') }}" target="_blank" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
                     <span class="d-block font-weight-bold">Download</span>
                     <span>NOMOR REG. ONLINE <i class="fa fa-print"></i></span>
                 </a>
-                <a href="" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
+                <a href="{{ route('candidates.pdf.test-number') }}" target="_blank" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
                     <span class="d-block font-weight-bold">Download</span>
                     <span>NOMOR UJIAN <i class="fa fa-print"></i></span>
                 </a>
-                <a href="" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
+                <a href="{{ route('candidates.pdf.nametag') }}" target="_blank" style="text-decoration: none;" class="d-inline-block p-3 m-2 rounded bg-primary text-white">
                     <span class="d-block font-weight-bold">Download</span>
                     <span>NAMETAG <i class="fa fa-print"></i></span>
                 </a>
